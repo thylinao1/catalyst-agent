@@ -1,0 +1,16 @@
+# Secrets — never commit the real API key.
+.env
+.streamlit/secrets.toml
+
+# Virtual environment.
+.venv/
+
+# Python caches.
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Databases — ignore all except the demo db the deployed dashboard reads.
+*.db
+*.db-journal
+!catalyst.db

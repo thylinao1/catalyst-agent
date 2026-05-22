@@ -1,0 +1,82 @@
+[
+  {
+    "external_id": "s001",
+    "title": "Layer-2 bridge exploited for $88M in early-morning attack",
+    "source": "SampleWire",
+    "url": "https://example.com/s001",
+    "published_at": "2026-05-19T05:12:00Z",
+    "currencies": ["ARB"]
+  },
+  {
+    "external_id": "s002",
+    "title": "Foundation confirms 320M token unlock scheduled for next Tuesday",
+    "source": "SampleWire",
+    "url": "https://example.com/s002",
+    "published_at": "2026-05-19T08:40:00Z",
+    "currencies": ["SOL"]
+  },
+  {
+    "external_id": "s003",
+    "title": "SEC opens enforcement probe into staking-as-a-service providers",
+    "source": "SampleWire",
+    "url": "https://example.com/s003",
+    "published_at": "2026-05-19T11:05:00Z",
+    "currencies": ["ETH"]
+  },
+  {
+    "external_id": "s004",
+    "title": "Network completes long-awaited upgrade, cutting gas fees by 40%",
+    "source": "SampleWire",
+    "url": "https://example.com/s004",
+    "published_at": "2026-05-18T16:20:00Z",
+    "currencies": ["ETH"]
+  },
+  {
+    "external_id": "s005",
+    "title": "Major exchange announces listing for new token with perpetual futures",
+    "source": "SampleWire",
+    "url": "https://example.com/s005",
+    "published_at": "2026-05-19T09:30:00Z",
+    "currencies": ["SUI"]
+  },
+  {
+    "external_id": "s006",
+    "title": "Exchange announces delisting of eight low-volume tokens",
+    "source": "SampleWire",
+    "url": "https://example.com/s006",
+    "published_at": "2026-05-19T07:55:00Z",
+    "currencies": ["DOGE"]
+  },
+  {
+    "external_id": "s007",
+    "title": "Bitcoin funds record largest weekly inflow since launch",
+    "source": "SampleWire",
+    "url": "https://example.com/s007",
+    "published_at": "2026-05-19T13:00:00Z",
+    "currencies": ["BTC"]
+  },
+  {
+    "external_id": "s008",
+    "title": "Protocol passes governance vote to burn 2% of supply each quarter",
+    "source": "SampleWire",
+    "url": "https://example.com/s008",
+    "published_at": "2026-05-18T20:10:00Z",
+    "currencies": ["BNB"]
+  },
+  {
+    "external_id": "s009",
+    "title": "Trader says altcoin season is finally here, eyes 5x price targets",
+    "source": "SampleWire",
+    "url": "https://example.com/s009",
+    "published_at": "2026-05-19T10:15:00Z",
+    "currencies": ["XRP"]
+  },
+  {
+    "external_id": "s010",
+    "title": "Payments giant partners with blockchain firm on stablecoin settlement",
+    "source": "SampleWire",
+    "url": "https://example.com/s010",
+    "published_at": "2026-05-19T12:25:00Z",
+    "currencies": ["XLM"]
+  }
+]

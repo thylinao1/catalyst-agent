@@ -1,0 +1,92 @@
+[
+  {
+    "title": "Cross-chain bridge drained of $190M in overnight exploit",
+    "category": "security_exploit",
+    "direction": "bearish",
+    "note": "Direct loss of user funds from a bridge contract exploit."
+  },
+  {
+    "title": "DeFi lending protocol halts withdrawals after oracle manipulation attack",
+    "category": "security_exploit",
+    "direction": "bearish",
+    "note": "Smart-contract attack causing frozen funds and loss of confidence."
+  },
+  {
+    "title": "Vesting cliff ends: $540M of locked tokens unlock next week",
+    "category": "token_unlock",
+    "direction": "bearish",
+    "note": "Scheduled supply release adding sell-side pressure."
+  },
+  {
+    "title": "Foundation confirms quarterly investor unlock of 4% of supply",
+    "category": "token_unlock",
+    "direction": "bearish",
+    "note": "Recurring vesting unlock; expected and scheduled."
+  },
+  {
+    "title": "Network approves fee-burn mechanism that reduces net issuance",
+    "category": "tokenomic_change",
+    "direction": "bullish",
+    "note": "Governance change lowering effective token supply growth."
+  },
+  {
+    "title": "Foundation proposes raising staking emissions to fund validators",
+    "category": "tokenomic_change",
+    "direction": "bearish",
+    "note": "Higher emissions increase supply growth."
+  },
+  {
+    "title": "SEC files lawsuit against major exchange over unregistered securities",
+    "category": "regulatory",
+    "direction": "bearish",
+    "note": "Enforcement action creating sector-wide regulatory overhang."
+  },
+  {
+    "title": "Regulator grants final approval for spot ETF product",
+    "category": "regulatory",
+    "direction": "bullish",
+    "note": "Regulatory approval opening new institutional access."
+  },
+  {
+    "title": "Mainnet hard fork goes live, cutting transaction finality to two seconds",
+    "category": "protocol_upgrade",
+    "direction": "bullish",
+    "note": "Completed network upgrade improving performance."
+  },
+  {
+    "title": "Major network upgrade delayed three months after testnet bug",
+    "category": "protocol_upgrade",
+    "direction": "bearish",
+    "note": "Upgrade delay; execution risk rather than completion."
+  },
+  {
+    "title": "Top-tier exchange announces listing for mid-cap token",
+    "category": "listing",
+    "direction": "bullish",
+    "note": "New exchange listing improving liquidity and access."
+  },
+  {
+    "title": "Exchange to delist several tokens citing low liquidity",
+    "category": "delisting",
+    "direction": "bearish",
+    "note": "Exchange removing tokens from trading."
+  },
+  {
+    "title": "Payments firm partners with blockchain project for settlement pilot",
+    "category": "partnership",
+    "direction": "bullish",
+    "note": "Adoption-oriented partnership announcement."
+  },
+  {
+    "title": "Crypto markets slide as central bank signals higher-for-longer rates",
+    "category": "macro",
+    "direction": "bearish",
+    "note": "Macro rate environment; not specific to one token."
+  },
+  {
+    "title": "Analyst predicts token could rally tenfold by year end",
+    "category": "noise",
+    "direction": "neutral",
+    "note": "Opinion and price speculation with no operational catalyst."
+  }
+]
