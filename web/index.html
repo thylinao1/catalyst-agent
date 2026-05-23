@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Catalyst Agent — crypto catalyst-awareness layer</title>
+  <meta name="description"
+    content="An LLM agent that classifies crypto news into a catalyst taxonomy and gates a downstream trading model per asset." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <svg width="24" height="26" viewBox="0 0 24 26" aria-hidden="true">
+        <rect x="0"  y="16" width="6" height="10" rx="2" fill="#3aa874" />
+        <rect x="9"  y="9"  width="6" height="17" rx="2" fill="#d99a2b" />
+        <rect x="18" y="2"  width="6" height="24" rx="2" fill="#e2504d" />
+      </svg>
+      <div class="brand-text">
+        <span class="brand-name">CATALYST</span>
+        <span class="brand-tag">crypto catalyst-awareness layer</span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <span class="live-dot" id="liveDot">SNAPSHOT</span>
+      <div class="run-stamp">
+        <span class="k">LAST PIPELINE RUN</span>
+        <span class="mono" id="runStamp">—</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <div id="loading" class="state">
+      <h2>Loading snapshot…</h2>
+      <p>Reading <code>data.json</code>.</p>
+    </div>
+
+    <div id="error" class="state hidden">
+      <h2>No data snapshot found</h2>
+      <p>Run <code>python export_data.py</code> to generate <code>data.js</code>, then reload.</p>
+    </div>
+
+    <div id="app" class="hidden">
+
+      <section class="section">
+        <div class="section-head">
+          <span class="section-label">Run summary</span>
+          <span class="section-rule"></span>
+          <span class="section-meta" id="genMeta"></span>
+        </div>
+        <div class="kpi-grid" id="kpiGrid"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="section-label">Gating signals</span>
+          <span class="section-rule"></span>
+          <span class="section-meta">structured output · ranked by risk</span>
+        </div>
+        <div class="legend">
+          <span class="legend-item"><span class="tok suppress">SUPPRESS</span> gate the model off for this asset</span>
+          <span class="legend-item"><span class="tok caution">CAUTION</span> moderate catalyst live · reduce exposure</span>
+          <span class="legend-item"><span class="tok clear">CLEAR</span> no live catalyst · act normally</span>
+        </div>
+        <div id="signalList"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="section-label">Analytics</span>
+          <span class="section-rule"></span>
+          <span class="section-meta" id="analyticsMeta"></span>
+        </div>
+        <div class="chart-grid">
+          <div class="chart-card">
+            <div class="chart-title">Risk by asset</div>
+            <div class="chart-note">Aggregated noisy-OR risk score, per gated asset</div>
+            <div class="chart-box"><canvas id="riskChart"></canvas></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title">Catalyst category mix</div>
+            <div class="chart-note">Classified events grouped by taxonomy category</div>
+            <div class="chart-box"><canvas id="catChart"></canvas></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title">Severity × confidence</div>
+            <div class="chart-note">One point per classified event, coloured by category</div>
+            <div class="chart-box"><canvas id="scatterChart"></canvas></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="section-label">Classification log</span>
+          <span class="section-rule"></span>
+          <span class="section-meta" id="logMeta"></span>
+        </div>
+        <div class="filters" id="filters">
+          <span class="filter-label">Category</span>
+        </div>
+        <div class="table-wrap">
+          <table class="log">
+            <colgroup>
+              <col style="width:11%" /><col style="width:12%" />
+              <col style="width:12%" /><col style="width:11%" />
+              <col style="width:13%" /><col style="width:8%" />
+              <col style="width:33%" />
+            </colgroup>
+            <thead>
+              <tr id="logHead">
+                <th data-key="classified_at">Time<span class="arrow">▼</span></th>
+                <th data-key="source">Source<span class="arrow">▼</span></th>
+                <th data-key="category">Category<span class="arrow">▼</span></th>
+                <th data-key="direction">Direction<span class="arrow">▼</span></th>
+                <th data-key="severity" class="num">Severity<span class="arrow">▼</span></th>
+                <th data-key="confidence" class="num t-conf">Conf.<span class="arrow">▼</span></th>
+                <th data-key="title">Headline<span class="arrow">▼</span></th>
+              </tr>
+            </thead>
+            <tbody id="logBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer class="foot">
+        <span id="footLeft">—</span>
+        <span>perception → retrieval → reasoning → action</span>
+      </footer>
+
+    </div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
