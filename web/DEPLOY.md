@@ -1,6 +1,6 @@
 # Deploying the Catalyst dashboard
 
-The dashboard in this `web/` folder is a **fully static site** — just HTML, CSS
+The dashboard in this `web/` folder is a **fully static site** - just HTML, CSS
 and JavaScript. There is no server, no build step, and no framework. That means
 it can be hosted for free on any static host, it never "sleeps", and it loads
 instantly.
@@ -12,7 +12,7 @@ instantly.
 | `index.html` | the dashboard page                                             |
 | `styles.css` | all styling                                                    |
 | `app.js`     | rendering, charts, sorting/filtering                           |
-| `data.js`    | the data snapshot — **generated**, see below                   |
+| `data.js`    | the data snapshot - **generated**, see below                   |
 | `DEPLOY.md`  | this file                                                      |
 
 `Chart.js` and the fonts load from public CDNs at runtime, so the folder above
@@ -29,7 +29,7 @@ python run.py --source live --currencies BTC,ETH,SOL   # 1. run the pipeline
 python export_data.py                                  # 2. regenerate web/data.js
 ```
 
-Then redeploy (or, on a git-connected host, commit and push — see below).
+Then redeploy (or, on a git-connected host, commit and push - see below).
 
 `data.js` is plain JavaScript (`window.CATALYST_DATA = {...}`) rather than JSON
 on purpose: a `<script>` tag works when the page is opened directly from disk,
@@ -37,7 +37,7 @@ whereas `fetch()` of a local JSON file is blocked by browsers.
 
 ## Preview it locally
 
-Just double-click `index.html` — because the data is a `<script>`, it opens
+Just double-click `index.html` - because the data is a `<script>`, it opens
 straight from the filesystem with no server needed.
 
 If you prefer a server (closer to production):
@@ -48,9 +48,9 @@ python -m http.server 8000
 # open http://localhost:8000
 ```
 
-## Deploy — pick one
+## Deploy - pick one
 
-### Option A — Netlify Drop (fastest, no account setup)
+### Option A - Netlify Drop (fastest, no account setup)
 
 1. Go to <https://app.netlify.com/drop>.
 2. Drag the whole `web/` folder onto the page.
@@ -58,7 +58,7 @@ python -m http.server 8000
 
 To update later, regenerate `data.js` and drag the folder again.
 
-### Option B — Git-connected (auto-deploys on every push)
+### Option B - Git-connected (auto-deploys on every push)
 
 Works with **Vercel**, **Netlify**, or **Cloudflare Pages**. All three are free
 for a project this size and the steps are nearly identical:
@@ -73,7 +73,7 @@ for a project this size and the steps are nearly identical:
 To update the data: run the pipeline, run `python export_data.py`, then
 `git add web/data.js && git commit && git push`.
 
-### Option C — GitHub Pages
+### Option C - GitHub Pages
 
 GitHub Pages serves from a repo root or a `/docs` folder, not an arbitrary
 subfolder. Easiest path: copy the contents of `web/` into a `docs/` folder at
@@ -86,14 +86,14 @@ more professional (e.g. `catalyst.yourdomain.com`).
 
 1. In the host's project settings, open the **Domains** section and add your
    domain or subdomain.
-2. The host shows a DNS record to create — usually a **CNAME** for a subdomain
+2. The host shows a DNS record to create - usually a **CNAME** for a subdomain
    pointing at the host (e.g. `catalyst → your-project.netlify.app`).
 3. Add that record at your domain registrar. HTTPS is provisioned automatically
    once DNS propagates (minutes to a couple of hours).
 
 ## Notes
 
-- The dashboard is read-only and contains no secrets — `data.js` holds only the
+- The dashboard is read-only and contains no secrets - `data.js` holds only the
   already-public news/classification data, never API keys.
-- If you ever see "No data snapshot found", `data.js` is missing or empty — run
+- If you ever see "No data snapshot found", `data.js` is missing or empty - run
   `python export_data.py`.

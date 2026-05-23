@@ -1,4 +1,4 @@
-/* Catalyst Agent dashboard — loads data.json and renders everything. */
+/* Catalyst Agent dashboard - loads data.json and renders everything. */
 'use strict';
 
 const REC_COLOR = { SUPPRESS: '#e2504d', CAUTION: '#d99a2b', CLEAR: '#3aa874' };
@@ -34,13 +34,13 @@ const catColor = (() => {
 
 function fmtRun(iso) {
   const d = new Date(iso);
-  if (isNaN(d)) return '—';
+  if (isNaN(d)) return '-';
   return `${pad(d.getUTCDate())} ${MON[d.getUTCMonth()]} ${d.getUTCFullYear()}`
        + ` · ${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())} UTC`;
 }
 function fmtRow(iso) {
   const d = new Date(iso);
-  if (isNaN(d)) return '—';
+  if (isNaN(d)) return '-';
   return `${MON[d.getUTCMonth()]} ${pad(d.getUTCDate())} `
        + `${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}`;
 }
@@ -123,7 +123,7 @@ function renderSignals(signals) {
     const color = REC_COLOR[rec] || '#8b8e97';
     const pct = Math.max(2, Math.min(100, Math.round(s.risk_score * 100)));
     const cats = (s.active_categories || [])
-      .map((c) => `<span class="cat-tag">${esc(c)}</span>`).join('') || '—';
+      .map((c) => `<span class="cat-tag">${esc(c)}</span>`).join('') || '-';
     const n = (s.contributing || []).length;
     const detail = (s.contributing || []).map((e) => {
       const d = DIR[e.direction] || DIR.neutral;
@@ -378,5 +378,5 @@ function renderLog(rows) {
 }
 
 function shortSource(s) {
-  return String(s || '').split(':')[0].split('.')[0].trim() || '—';
+  return String(s || '').split(':')[0].split('.')[0].trim() || '-';
 }

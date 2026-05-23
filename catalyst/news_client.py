@@ -1,10 +1,10 @@
-"""News sources — the perception stage of the pipeline.
+"""News sources - the perception stage of the pipeline.
 
 Two sources, both exposing the same `.fetch()` method so the pipeline does not
 care which is used:
 
-  * RSSNewsClient   — live crypto news from public RSS feeds (no API key).
-  * SampleNewsSource — a bundled JSON fixture, for offline development/testing.
+  * RSSNewsClient   - live crypto news from public RSS feeds (no API key).
+  * SampleNewsSource - a bundled JSON fixture, for offline development/testing.
 """
 from __future__ import annotations
 
@@ -15,7 +15,7 @@ import requests
 
 from .models import NewsEvent
 
-# Public RSS feeds — free, no key, no quota. Override via RSS_FEEDS in .env.
+# Public RSS feeds - free, no key, no quota. Override via RSS_FEEDS in .env.
 DEFAULT_FEEDS = [
     "https://www.coindesk.com/arc/outboundfeeds/rss/",
     "https://cointelegraph.com/rss",
@@ -43,7 +43,7 @@ class RSSNewsClient:
     """Fetches live crypto news from public RSS feeds.
 
     RSS items are not tagged with coin tickers, so `currencies` on each event is
-    left empty — the LLM agent infers affected assets from the headline. If a
+    left empty - the LLM agent infers affected assets from the headline. If a
     `currencies` filter is passed to `fetch()`, a best-effort title match is
     applied (RSS has no structured coin field, so this is approximate).
     """
@@ -105,7 +105,7 @@ class RSSNewsClient:
 
     @staticmethod
     def _mentions(title: str, wanted: set[str]) -> bool:
-        """Approximate ticker filter — does the headline contain a wanted code?"""
+        """Approximate ticker filter - does the headline contain a wanted code?"""
         tokens = {t.strip(".,:;!?()[]'\"").upper() for t in title.split()}
         return bool(tokens.intersection(wanted))
 

@@ -1,11 +1,11 @@
-"""LLM clients — the reasoning stage of the pipeline.
+"""LLM clients - the reasoning stage of the pipeline.
 
 `LLMClient` is the interface the rest of the code depends on. Two implementations:
 
-  * GeminiClient — calls Google's Gemini API over plain REST. REST (rather than
+  * GeminiClient - calls Google's Gemini API over plain REST. REST (rather than
     an SDK) keeps the dependency surface tiny and makes the provider trivial to
     swap: a new provider is just another LLMClient subclass.
-  * MockLLMClient — deterministic, offline. Lets the whole pipeline (and the
+  * MockLLMClient - deterministic, offline. Lets the whole pipeline (and the
     test suite) run with no API key and no network.
 
 Both expose:
@@ -70,7 +70,7 @@ class GeminiClient(LLMClient):
         self.embed_model = embed_model
         self.timeout = timeout
         self.max_retries = max_retries
-        # Minimum seconds between API calls — paces requests under the Gemini
+        # Minimum seconds between API calls - paces requests under the Gemini
         # free-tier limit (~10 requests/min). Lower this on a paid tier.
         self.min_interval = min_interval
         self._last_call = 0.0
@@ -99,7 +99,7 @@ class GeminiClient(LLMClient):
                 return resp.json()
 
             if resp.status_code in (429, 500, 503):
-                # Rate-limited or transient — honour Retry-After, else back off.
+                # Rate-limited or transient - honour Retry-After, else back off.
                 retry_after = (resp.headers.get("Retry-After") or "").strip()
                 delay = (
                     int(retry_after)
@@ -138,8 +138,8 @@ class GeminiClient(LLMClient):
         return self.embed_batch([text])[0]
 
     def embed_batch(self, texts: list[str], chunk: int = 100) -> list[list[float]]:
-        """Embed many texts via the batchEmbedContents endpoint — one request
-        per chunk of 100 — so the knowledge-base build costs a single call."""
+        """Embed many texts via the batchEmbedContents endpoint - one request
+        per chunk of 100 - so the knowledge-base build costs a single call."""
         vectors: list[list[float]] = []
         for start in range(0, len(texts), chunk):
             batch = texts[start : start + chunk]
@@ -167,7 +167,7 @@ class GeminiClient(LLMClient):
 
 
 class MockLLMClient(LLMClient):
-    """Offline, deterministic backend — keyword rules + hashed embeddings.
+    """Offline, deterministic backend - keyword rules + hashed embeddings.
 
     Not a real model: it exists so the pipeline and tests run without a key.
     The keyword map below is intentionally simple and only used for testing.
@@ -189,7 +189,7 @@ class MockLLMClient(LLMClient):
     ]
 
     def classify(self, prompt: str, schema: dict) -> dict:
-        # Match only against the news-item section of the prompt — the taxonomy
+        # Match only against the news-item section of the prompt - the taxonomy
         # and example blocks contain category keywords that would match falsely.
         segment = prompt
         if "NEWS ITEM TO CLASSIFY:" in prompt and "INSTRUCTIONS:" in prompt:

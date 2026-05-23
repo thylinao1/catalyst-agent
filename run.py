@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Catalyst Agent — command-line entrypoint.
+"""Catalyst Agent - command-line entrypoint.
 
 Examples:
     python run.py --init-db

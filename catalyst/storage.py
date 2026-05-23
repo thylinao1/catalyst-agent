@@ -1,7 +1,7 @@
 """SQLite storage layer.
 
 All SQL lives here. Queries are parameterised (no string interpolation), and
-writes are idempotent — re-running the pipeline never duplicates a row, because
+writes are idempotent - re-running the pipeline never duplicates a row, because
 `news_events.external_id` and `classifications.event_id` are UNIQUE.
 
 SQLite is used so the project runs with zero setup, but the schema is plain

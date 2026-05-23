@@ -1,4 +1,4 @@
-"""The classification agent — RAG-augmented LLM event classification.
+"""The classification agent - RAG-augmented LLM event classification.
 
 For one news event the agent:
   1. retrieves the nearest labelled examples from the knowledge base (RAG),
@@ -87,7 +87,7 @@ pipeline. Classify ONE news item into exactly one category from the taxonomy.
 TAXONOMY:
 {self._taxonomy_block()}
 
-SIMILAR PRIOR EXAMPLES (retrieved for context — use them to stay consistent):
+SIMILAR PRIOR EXAMPLES (retrieved for context - use them to stay consistent):
 {self._examples_block(examples)}
 
 NEWS ITEM TO CLASSIFY:
@@ -98,8 +98,8 @@ NEWS ITEM TO CLASSIFY:
 INSTRUCTIONS:
 - category: the single best-fitting taxonomy category.
 - direction: likely price impact on the affected assets (bullish/bearish/neutral).
-- severity: 0.0-1.0 — how market-moving this specific item is for those assets.
-- confidence: 0.0-1.0 — how certain you are of this classification.
+- severity: 0.0-1.0 - how market-moving this specific item is for those assets.
+- confidence: 0.0-1.0 - how certain you are of this classification.
 - affected_assets: ticker symbols this item concerns (use the tickers above if \
 they are correct; otherwise infer from the title).
 - rationale: one concise sentence explaining the call.
@@ -110,7 +110,7 @@ Return JSON only, matching the required schema."""
         """Classify many events, embedding all RAG queries in one batched call.
 
         This keeps embedding to a single API request regardless of how many
-        events are processed — important under free-tier rate limits.
+        events are processed - important under free-tier rate limits.
         """
         if not events:
             return []

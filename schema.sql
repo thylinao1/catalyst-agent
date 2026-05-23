@@ -1,4 +1,4 @@
--- Catalyst Agent — relational schema
+-- Catalyst Agent - relational schema
 -- ---------------------------------------------------------------------------
 -- Written for SQLite (zero-setup, ships with Python) but deliberately kept
 -- portable. To move to Postgres / TimescaleDB for the deployed pipeline:

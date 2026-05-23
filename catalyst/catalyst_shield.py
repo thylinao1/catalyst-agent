@@ -1,8 +1,8 @@
-"""The Catalyst Shield — turns individual classifications into a gating signal.
+"""The Catalyst Shield - turns individual classifications into a gating signal.
 
 Each classified event stays "live" for its category's cooldown window. The
 Shield collects every live catalyst per asset and condenses them into one
-risk score and a recommendation (CLEAR / CAUTION / SUPPRESS) — the structured
+risk score and a recommendation (CLEAR / CAUTION / SUPPRESS) - the structured
 output a downstream model would consume to decide whether to act on an asset.
 """
 from __future__ import annotations

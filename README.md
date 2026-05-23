@@ -7,7 +7,7 @@ downstream model can consume.
 
 It is a working implementation of the *catalyst-awareness layer* that was
 specified for the ARASAF statistical-arbitrage framework but stripped from the
-shipped "Lite" version — rebuilt here as a standalone, deployable component.
+shipped "Lite" version - rebuilt here as a standalone, deployable component.
 
 ## Pipeline
 
@@ -65,7 +65,7 @@ catalyst_agent/
    ```
    pip install -r requirements.txt
    ```
-2. **Get one free API key** — Google Gemini, at <https://aistudio.google.com/apikey>.
+2. **Get one free API key** - Google Gemini, at <https://aistudio.google.com/apikey>.
    News comes from public RSS feeds, so no news API key is needed.
 3. Copy `.env.example` to `.env` and paste the Gemini key in.
 4. Initialise the database:
@@ -95,36 +95,36 @@ streamlit run dashboard.py
 ```
 
 It shows the live catalyst signals, a filterable classification log, and the
-category mix. It is read-only — it re-reads `catalyst.db` on each refresh and
+category mix. It is read-only - it re-reads `catalyst.db` on each refresh and
 never calls Gemini or the news feeds, so the pipeline and dashboard stay
 cleanly decoupled.
 
 ## How it works
 
-**News client** — `RSSNewsClient` pulls recent items from public crypto RSS
+**News client** - `RSSNewsClient` pulls recent items from public crypto RSS
 feeds (CoinDesk, Cointelegraph, Decrypt) and maps them to `NewsEvent` records.
 `SampleNewsSource` reads a local JSON fixture instead, for offline work. Both
 expose the same `.fetch()` method, so the pipeline is source-agnostic.
 
-**RAG knowledge base** — `data/knowledge_base.json` holds hand-labelled example
+**RAG knowledge base** - `data/knowledge_base.json` holds hand-labelled example
 events. Each is embedded once (Gemini `gemini-embedding-001`; vectors cached in
 SQLite). For every incoming event the three most similar examples are retrieved
 by cosine similarity and injected into the prompt as few-shot context.
 
-**Classification agent** — builds a prompt from the taxonomy + retrieved
+**Classification agent** - builds a prompt from the taxonomy + retrieved
 examples + the event, and calls Gemini with a JSON response schema so the model
 can only return well-formed output. The result is validated (unknown categories
 fall back to `noise`) and assigned the deterministic cooldown for its category.
 
-**Catalyst Shield** — a catalyst stays "live" for its category's cooldown
+**Catalyst Shield** - a catalyst stays "live" for its category's cooldown
 window (e.g. 168h for an exploit, 48h for an unlock). The shield collects every
 live catalyst per asset and combines them with a noisy-OR into one risk score,
 then maps that to `CLEAR` / `CAUTION` / `SUPPRESS`.
 
-**Storage** — all SQL is in `storage.py`. Writes are parameterised and
+**Storage** - all SQL is in `storage.py`. Writes are parameterised and
 idempotent (`news_events.external_id` and `classifications.event_id` are
 `UNIQUE`). SQLite is used for zero-setup; the schema is plain SQL and ports to
-Postgres / TimescaleDB unchanged — see the header of `schema.sql`.
+Postgres / TimescaleDB unchanged - see the header of `schema.sql`.
 
 ## Data model
 
@@ -147,18 +147,18 @@ non-catalyst "noise" items never produce a gating signal.
 
 ## Roadmap
 
-- **Deploy it** — containerise (Docker), schedule (Airflow / Prefect), run
+- **Deploy it** - containerise (Docker), schedule (Airflow / Prefect), run
   continuously, add drift monitoring on the classification mix.
-- **Function calling** — let the agent call a tool to pull an asset's recent
+- **Function calling** - let the agent call a tool to pull an asset's recent
   event history from SQL before deciding severity (true tool-use agent).
-- **Postgres / TimescaleDB** — swap the storage backend for the deployed
+- **Postgres / TimescaleDB** - swap the storage backend for the deployed
   pipeline (schema already compatible).
 
 ## Honest limitations
 
 - The catalyst taxonomy, cooldown windows and shield thresholds are
   hand-designed priors, not learned or backtested against price outcomes.
-- `MockLLMClient` is a keyword stub for offline testing only — not a model.
+- `MockLLMClient` is a keyword stub for offline testing only - not a model.
 - RSS feeds carry no structured coin tags, so affected assets are inferred by
   the LLM from the headline; the `--currencies` filter on RSS is a best-effort
   title match. Swap or add feeds via `RSS_FEEDS` in `.env`.

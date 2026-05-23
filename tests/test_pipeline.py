@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Offline end-to-end test — no API key, no network.
+"""Offline end-to-end test - no API key, no network.
 
 Runs the whole pipeline against the bundled sample feed with the deterministic
 MockLLMClient, into a throwaway database. Verifies fetch -> classify -> store
@@ -36,7 +36,7 @@ def main() -> int:
     tmp_db = os.path.join(tempfile.mkdtemp(), "test_catalyst.db")
     config = Config(db_path=tmp_db)
 
-    print("Run 1 — fresh database, sample feed, mock LLM:")
+    print("Run 1 - fresh database, sample feed, mock LLM:")
     pipe = build_pipeline(config, source="sample", llm_backend="mock")
     r1 = pipe.run(max_items=50)
 
@@ -65,7 +65,7 @@ def main() -> int:
     )
     check("XRP 'noise' item produced no signal", "XRP" not in by_asset)
 
-    print("\nRun 2 — same database, same feed (idempotency check):")
+    print("\nRun 2 - same database, same feed (idempotency check):")
     pipe2 = build_pipeline(config, source="sample", llm_backend="mock")
     r2 = pipe2.run(max_items=50)
     check("no events re-classified on second run", r2.classified == 0)

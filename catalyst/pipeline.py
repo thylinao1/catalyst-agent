@@ -1,4 +1,4 @@
-"""Pipeline orchestration — wires the stages together.
+"""Pipeline orchestration - wires the stages together.
 
     fetch news -> (per new event) RAG-classify -> store
                -> aggregate live classifications -> store gating signals
@@ -74,7 +74,7 @@ class Pipeline:
                 pending.append((event_id, event))
         result.new_events = len(pending)
 
-        # 2/3. Classify new events — RAG query embeddings are batched into one
+        # 2/3. Classify new events - RAG query embeddings are batched into one
         # request inside classify_batch, which matters under free-tier limits.
         classifications = self.classifier.classify_batch([e for _, e in pending])
         for (event_id, _), classification in zip(pending, classifications):

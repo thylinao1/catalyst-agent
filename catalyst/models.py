@@ -33,7 +33,7 @@ def parse_iso(value: str | None) -> datetime | None:
 class NewsEvent:
     """A single raw news item, before classification."""
 
-    external_id: str                       # upstream id — used for dedup
+    external_id: str                       # upstream id - used for dedup
     title: str
     source: str = ""
     url: str = ""

@@ -1,4 +1,4 @@
-"""RAG knowledge base — retrieval over labelled example events.
+"""RAG knowledge base - retrieval over labelled example events.
 
 This is the "retrieval" half of retrieval-augmented generation. A small corpus
 of hand-labelled historical events is embedded once (vectors cached in SQLite);
@@ -41,10 +41,10 @@ class KnowledgeBase:
     @staticmethod
     def _text(example: dict) -> str:
         """Text used both for embedding and for the few-shot prompt block."""
-        return f"{example['title']} — {example.get('note', '')}".strip(" —")
+        return f"{example['title']} - {example.get('note', '')}".strip(" -")
 
     def _hash(self, text: str) -> str:
-        """Cache key — namespaced by model so vectors are never mixed."""
+        """Cache key - namespaced by model so vectors are never mixed."""
         key = f"{self.llm.name}::{text}"
         return hashlib.sha256(key.encode("utf-8")).hexdigest()
 

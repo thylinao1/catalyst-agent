@@ -1,8 +1,8 @@
 """Configuration and the catalyst taxonomy.
 
 Two things live here:
-  1. `Config` — runtime settings, loaded from environment / .env file.
-  2. `CATALYST_CATEGORIES` — the fixed taxonomy the LLM agent classifies into.
+  1. `Config` - runtime settings, loaded from environment / .env file.
+  2. `CATALYST_CATEGORIES` - the fixed taxonomy the LLM agent classifies into.
 
 Keeping the taxonomy in one place means the prompt, the storage layer and the
 Catalyst Shield all agree on the same category names and cooldown windows.
@@ -28,7 +28,7 @@ ROOT = Path(__file__).resolve().parent.parent
 # Catalyst taxonomy
 # ---------------------------------------------------------------------------
 # Each event is classified into exactly one category. `cooldown_hours` is how
-# long the catalyst is treated as "live" by the Catalyst Shield — it is fixed
+# long the catalyst is treated as "live" by the Catalyst Shield - it is fixed
 # per category (deterministic) rather than left to the model. `typical_severity`
 # is guidance shown to the model, not a hard rule; the model returns its own
 # 0-1 severity for the specific event.
@@ -111,7 +111,7 @@ def cooldown_for(category: str) -> int:
 class Config:
     """Runtime configuration. Use `Config.from_env()` to build one.
 
-    News comes from public RSS feeds, so no news API key is needed — the only
+    News comes from public RSS feeds, so no news API key is needed - the only
     credential required is the Gemini key.
     """
 

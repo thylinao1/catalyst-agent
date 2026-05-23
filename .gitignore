@@ -1,4 +1,4 @@
-# Secrets — never commit the real API key.
+# Secrets - never commit the real API key.
 .env
 .streamlit/secrets.toml
 
@@ -10,7 +10,7 @@ __pycache__/
 *.pyc
 .pytest_cache/
 
-# Databases — ignore all except the demo db the deployed dashboard reads.
+# Databases - ignore all except the demo db the deployed dashboard reads.
 *.db
 *.db-journal
 !catalyst.db
